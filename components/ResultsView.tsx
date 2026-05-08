@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Download, Share2, Heart, Rocket, Copy } from "lucide-react";
 import { GeneratedProduct } from "@/lib/types";
 import { toast } from "sonner";
+import { GumroadPreviewModal } from "./GumroadPreviewModal";
 
 interface ResultsViewProps {
   product: GeneratedProduct;
@@ -15,7 +16,7 @@ interface ResultsViewProps {
 export function ResultsView({ product, onBack }: ResultsViewProps) {
   const [isExporting, setIsExporting] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [showLaunchModal, setShowLaunchModal] = useState(false);
+  const [showGumroadModal, setShowGumroadModal] = useState(false);
 
   const smartPrice = Math.floor(Math.random() * 25) + 29;
 
@@ -62,16 +63,6 @@ ${product.launchTips.map(t => `- ${t}`).join('\n')}
     });
   };
 
-  const launchOnGumroad = () => {
-    setShowLaunchModal(true);
-    confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
-    setTimeout(() => {
-      toast.success("🚀 Product launched on Gumroad!", {
-        description: `$${smartPrice} × 47 sales projected in first week`,
-      });
-    }, 1200);
-  };
-
   return (
     <div className="max-w-4xl mx-auto p-8">
       <div className="flex justify-between items-center mb-8">
@@ -80,8 +71,8 @@ ${product.launchTips.map(t => `- ${t}`).join('\n')}
           <Button variant="outline" onClick={copyGumroadListing}>
             <Copy className="w-4 h-4 mr-2" /> Copy Gumroad Listing
           </Button>
-          <Button onClick={launchOnGumroad} className="bg-gradient-to-r from-emerald-500 to-cyan-500">
-            <Rocket className="w-4 h-4 mr-2" /> Launch on Gumroad
+          <Button onClick={() => setShowGumroadModal(true)} className="bg-gradient-to-r from-emerald-500 to-cyan-500">
+            <Rocket className="w-4 h-4 mr-2" /> Create Gumroad Product
           </Button>
         </div>
       </div>
@@ -115,18 +106,11 @@ ${product.launchTips.map(t => `- ${t}`).join('\n')}
         </div>
       </div>
 
-      <AnimatePresence>
-        {showLaunchModal && (
-          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50" onClick={() => setShowLaunchModal(false)}>
-            <motion.div initial={{scale:0.9, opacity:0}} animate={{scale:1, opacity:1}} className="bg-zinc-900 border border-emerald-500 rounded-3xl p-10 text-center max-w-md">
-              <div className="text-6xl mb-6">🚀</div>
-              <h2 className="text-3xl font-bold mb-3">Product Launched!</h2>
-              <p className="text-zinc-400 mb-6">Your GODLY product is now live on Gumroad.<br/>Projected first-week revenue: <span className="text-emerald-400 font-semibold">${(smartPrice * 47).toLocaleString()}</span></p>
-              <Button onClick={() => setShowLaunchModal(false)} className="w-full">Awesome, take me back</Button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <GumroadPreviewModal 
+        product={product} 
+        isOpen={showGumroadModal} 
+        onClose={() => setShowGumroadModal(false)} 
+      />
     </div>
   );
 }
