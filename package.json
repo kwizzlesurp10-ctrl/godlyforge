@@ -1,6 +1,6 @@
 {
   "name": "godlyforge",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,6 +12,7 @@
     "next": "15.0.0",
     "react": "19.0.0-rc",
     "react-dom": "19.0.0-rc",
+    "canvas-confetti": "^1.9.3",
     "framer-motion": "^11.5.0",
     "lucide-react": "^0.441.0",
     "sonner": "^1.0.0",
