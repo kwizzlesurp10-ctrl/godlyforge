@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --gold: #ffd700;
+  --cyan: #22d3ee;
+  --indigo: #1e1438;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans);
+}
+
+.gold-gradient {
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
