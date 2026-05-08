@@ -13,6 +13,7 @@ interface GodlyStore {
   setNicheInput: (niche: string) => void;
   generateProduct: () => Promise<void>;
   saveToLibrary: (product: GeneratedProduct) => void;
+  removeFromLibrary: (productId: string) => void;
   reset: () => void;
 }
 
@@ -41,6 +42,12 @@ export const useGodlyStore = create<GodlyStore>()(
       saveToLibrary: (product) => {
         const current = get().savedProducts;
         set({ savedProducts: [product, ...current] });
+      },
+
+      removeFromLibrary: (productId) => {
+        set({
+          savedProducts: get().savedProducts.filter((product) => product.id !== productId),
+        });
       },
 
       reset: () => set({ generatedProduct: null, isGenerating: false }),

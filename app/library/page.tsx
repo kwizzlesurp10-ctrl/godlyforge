@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function LibraryPage() {
-  const { library, removeFromLibrary } = useGodlyStore();
+  const { savedProducts: library, removeFromLibrary } = useGodlyStore();
   const [flippedId, setFlippedId] = useState<string | null>(null);
 
   if (library.length === 0) {
