@@ -7,7 +7,7 @@ import { useGodlyStore } from "@/lib/store";
 
 export default function ResultsPage() {
   const params = useParams();
-  const { library } = useGodlyStore();
+  const { savedProducts: library } = useGodlyStore();
   const [product, setProduct] = useState<GeneratedProduct | null>(null);
 
   useEffect(() => {
