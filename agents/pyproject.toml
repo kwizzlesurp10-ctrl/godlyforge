@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hf-agent-tools"
+version = "0.1.0"
+description = "MCP + Hugging Face Hub CLI wrappers for coding agents (non-interactive, structured results)."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "mcp>=1.2.0",
+  "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+smolagents = ["smolagents>=1.0.0"]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+hf-agent-mcp = "hf_agent_tools.mcp_app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["hf_agent_tools"]
+
+[tool.hatch.build.targets.sdist]
+include = ["hf_agent_tools", "tests", "README.md", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
