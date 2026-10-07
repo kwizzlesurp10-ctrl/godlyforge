@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/ideas", label: "Ideas" },
   { href: "/build", label: "Build" },
   { href: "/library", label: "Library" },
+  { href: "/swarm", label: "Swarm" },
 ];
 
 export function MobileNav() {

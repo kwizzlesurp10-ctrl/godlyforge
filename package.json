@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
+    "ai": "^7.0.131",
     "canvas-confetti": "^1.9.3",
     "clsx": "^2.1.1",
     "framer-motion": "^11.5.0",
@@ -21,6 +22,7 @@
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
     "sonner": "^1.0.0",
     "tailwind-merge": "^3.5.0",
+    "zod": "^4.6.5",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
